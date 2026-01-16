@@ -5,12 +5,10 @@ import { createUI } from "./ui.js";
 import { LEVELS } from "./levels.js";
 import { DIFFICULTIES, ROLES } from "./roles.js";
 import { clamp, formatTime, nowMs } from "./utils.js";
-import { initPWA } from "./pwa.js";
 
 const uiWrap = createUI();
 const { ui, settings } = uiWrap;
 
-initPWA();
 
 const touchControls = document.getElementById("touchControls");
 function setTouchControlsVisible(v){
