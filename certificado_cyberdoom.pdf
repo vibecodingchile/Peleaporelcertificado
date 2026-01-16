@@ -1,0 +1,30 @@
+import streamlit as st
+from io import BytesIO
+from reportlab.pdfgen import canvas
+
+def build_pdf(nombre: str, score: int, verify_code: str) -> bytes:
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer)
+    c.setFont("Helvetica-Bold", 18)
+    c.drawString(72, 750, "Certificado de Finalizacion")
+    c.setFont("Helvetica", 12)
+    c.drawString(72, 710, f"Se certifica que: {nombre}")
+    c.drawString(72, 690, f"Completo CyberDoom: Guardia de Datos con score: {score}")
+    c.drawString(72, 650, f"Codigo de verificacion: {verify_code}")
+    c.showPage()
+    c.save()
+    return buffer.getvalue()
+
+st.title("CyberDoom - Certificado")
+nombre = st.text_input("Nombre")
+score = st.number_input("Score", min_value=0, step=1)
+verify = st.text_input("Verify code", value="CD-2026-0001")
+
+if st.button("Generar PDF"):
+    pdf_bytes = build_pdf(nombre, int(score), verify)
+    st.download_button(
+        "Descargar certificado",
+        data=pdf_bytes,
+        file_name="certificado_cyberdoom.pdf",
+        mime="application/pdf",
+    )
