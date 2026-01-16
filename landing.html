@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>CyberDoom Chile — Capacitación en Ciberseguridad</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hero{padding:18px}
+    .hero h1{font-size:28px;margin:0 0 10px 0}
+    .hero p{max-width:820px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .kpi{padding:14px;border-radius:16px;border:var(--border);background:rgba(0,0,0,.22)}
+    .kpi b{font-size:16px}
+    .pricegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .plan{padding:14px;border-radius:18px;border:var(--border);background:rgba(11,28,45,.78)}
+    .plan h2{margin:0 0 8px 0}
+    .plan .amt{font-size:22px;font-weight:900;margin:8px 0}
+    .plan ul{margin:10px 0 0 18px;color:var(--muted)}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    @media(max-width:900px){.cards,.pricegrid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <div class="title">CyberDoom Chile</div>
+        <div class="subtitle">Capacitación interactiva para equipos y empresas</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="./" style="text-decoration:none"><button class="primary">Jugar ahora</button></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card hero">
+      <h1>Entrena a tu equipo con simulaciones reales (sin aburrir)</h1>
+      <p class="muted">
+        CyberDoom Chile es una experiencia tipo “Doom” (2.5D) orientada a <b>ciberseguridad</b> y <b>protección de datos</b>:
+        estaciones con lecciones, mini‑quizzes, y certificado al finalizar.
+      </p>
+
+      <div class="cards">
+        <div class="kpi"><b>📘 Micro‑lecciones</b><div class="muted">Contenido práctico (principios, accesos, incidentes, continuidad).</div></div>
+        <div class="kpi"><b>🎮 Jugable en móvil</b><div class="muted">Joystick + mirada por deslizamiento.</div></div>
+        <div class="kpi"><b>📄 Certificado</b><div class="muted">Descarga/impresión al completar (ideal para RRHH).</div></div>
+      </div>
+
+      <div class="cta">
+        <a href="./"><button class="primary">Iniciar simulación</button></a>
+        <a href="#planes"><button class="ghost">Ver planes</button></a>
+      </div>
+
+      <div class="muted small" style="margin-top:12px">
+        © Desarrollado por <b>VibecodingChile</b> y <b>Matías Rojas Faúndez</b>.
+      </div>
+    </section>
+
+    <section class="card" id="planes" style="margin-top:14px">
+      <h1>Planes (referenciales)</h1>
+      <p class="muted">Puedes comenzar con GitHub Pages y luego pasar a portal con login, verificación y reportes.</p>
+
+      <div class="pricegrid">
+        <div class="plan">
+          <h2>Starter</h2>
+          <div class="amt">CLP $— / mes</div>
+          <div class="muted">Para pilotos y equipos pequeños</div>
+          <ul>
+            <li>Acceso al juego (web)</li>
+            <li>Certificado (impresión/PDF)</li>
+            <li>Actualizaciones de contenido</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <h2>Pro</h2>
+          <div class="amt">CLP $— / mes</div>
+          <div class="muted">Para empresas con seguimiento</div>
+          <ul>
+            <li>Portal + usuarios</li>
+            <li>Reportes por área</li>
+            <li>Certificados verificables</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <h2>Enterprise</h2>
+          <div class="amt">Cotización</div>
+          <div class="muted">SSO / Integración / SLA</div>
+          <ul>
+            <li>SSO (Google/Microsoft)</li>
+            <li>Integración LMS</li>
+            <li>Soporte + onboarding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
