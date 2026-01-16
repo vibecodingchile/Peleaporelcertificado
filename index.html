@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>CyberDoom: Guardia de Datos (Chile)</title>
+
+  <!-- CSS -->
+  <link href="styles.css" rel="stylesheet"/>
+
+  <!-- Favicon -->
+  <link href="assets/icons/favicon-64.png" rel="icon" type="image/png"/>
+</head>
+
+<body>
+<div id="app">
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🛡️</span>
+    <div class="brand-text">
+      <div class="title">CyberDoom</div>
+      <div class="subtitle">Guardia de Datos — Empresa chilena (ficción)</div>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="ghost" id="btnFullscreen">⛶</button>
+    <button class="ghost" id="btnHelp">Controles</button>
+    <button class="ghost" id="btnSettings">Ajustes</button>
+  </div>
+</header>
+
+<main class="main">
+  <div class="stage">
+    <canvas id="game" width="960" height="540" aria-label="Juego"></canvas>
+
+    <!-- HUD -->
+    <div class="hud hidden" id="hud">
+      <div class="hud-left">
+        <div class="hud-row"><span class="tag">Rol</span> <span id="hudRole">—</span></div>
+        <div class="hud-row"><span class="tag">Nivel</span> <span id="hudLevel">—</span></div>
+        <div class="hud-row"><span class="tag">Objetivo</span> <span id="hudObjective">—</span></div>
+      </div>
+
+      <div class="hud-center">
+        <div class="crosshair"></div>
+        <div class="toast hidden" id="toast"></div>
+      </div>
+
+      <div class="hud-right">
+        <div class="bars">
+          <div class="bar">
+            <div class="bar-label">Salud</div>
+            <div class="bar-track"><div class="bar-fill" id="barHealth"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-label">Energía</div>
+            <div class="bar-track"><div class="bar-fill" id="barEnergy"></div></div>
+          </div>
+        </div>
+        <div class="hud-row small">
+          <span class="tag">Puntaje</span> <span id="hudScore">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENÚ PRINCIPAL -->
+  <div class="overlay" id="menu">
+    <div class="panel">
+      <h1>CyberDoom: Guardia de Datos</h1>
+      <p class="muted">
+        Juego defensivo de ficción. Enfocado en <strong>respuesta a incidentes</strong> y
+        <strong>protección de datos</strong> en empresas chilenas.
+      </p>
+
+      <div class="grid">
+        <label class="row">
+          <span>Nombre del jugador</span>
+          <input id="playerName" type="text" maxlength="20" placeholder="Ej: Matías"/>
+        </label>
+
+        <div>
+          <h2>Rol</h2>
+          <div class="choices" id="roleChoices"></div>
+        </div>
+
+        <div>
+          <h2>Dificultad</h2>
+          <div class="choices" id="diffChoices"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="btnPlay">Iniciar misión</button>
+        <button class="ghost" id="btnLeaderboard">Tabla de puntajes</button>
+      </div>
+
+      <p class="muted small">
+        Consejo: haz clic en el juego para activar el control de cámara.
+      </p>
+    </div>
+  </div>
+
+  <!-- GAME OVER -->
+  <div class="overlay hidden" id="gameover">
+    <div class="panel">
+      <h2 id="gameoverTitle">Resultado</h2>
+      <p class="muted" id="gameoverText"></p>
+
+      <div class="scorebox">
+        <div><span class="tag">Puntaje</span> <span id="finalScore">0</span></div>
+        <div><span class="tag">Tiempo</span> <span id="finalTime">0:00</span></div>
+        <div><span class="tag">Amenazas</span> <span id="finalKills">0</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="btnNext">Siguiente nivel</button>
+        <button class="ghost" id="btnRetry">Reintentar</button>
+        <button class="primary hidden" id="btnCertificate">📄 Descargar certificado</button>
+        <button class="ghost" id="btnBackToMenu">Menú</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="muted small">
+    © CyberDoom — Desarrollado por VibecodingChile y Matías Rojas Faúndez.
+  </span>
+</footer>
+
+</div>
+
+<!-- MOTOR -->
+<script type="module" src="src/main.js"></script>
+
+<!-- 🔥 LIMPIEZA FORZADA DE CACHE (POR SI EXISTIÓ PWA ANTES) -->
+<script>
+(async () => {
+  if ("serviceWorker" in navigator) {
+    try {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const r of regs) await r.unregister();
+    } catch {}
+  }
+  if (window.caches?.keys) {
+    try {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    } catch {}
+  }
+})();
+</script>
+
+</body>
+</html>
